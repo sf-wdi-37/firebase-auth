@@ -97,11 +97,12 @@ Instructions modified from [https://firebase.google.com/docs/web/setup](https://
 
 5. The instructions say to add this code directly to your HTML, so it's safe to share openly. If your project is simple, you can add this code directly to your HTML as the instructions suggest. However, if you're working on a larger app with JavaScript files, you may want to incorporate this configuration into a different part of your code. You will still need this configuration information, so it's important to know where to find it!
 
-6. Close the configuration information popup.  Back on the project's page, you'll see a list of feature cards on the bottom half of the page. Take a minute to read over the features available. 
+6. Close the configuration information popup.  Back on the project's page, you'll see a list of feature cards on the bottom half of the page. Take a minute to read over the features available. Follow Google's guides for any feature you want to incorporate into your app!
 
-> The most commonly used feature of Firebase is probably its Realtime Database, but as an example we'll see how to use Firebase for authentication in a React app.
 
 ### Example: Firebase for Google Auth with React
+
+The most commonly used feature of Firebase is probably its Realtime Database, but as an example we'll see how to use Firebase for authentication in a React app. 
 
 This example assumes you're working on a React project created with `create-react-app`.  
 
