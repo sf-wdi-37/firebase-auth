@@ -183,9 +183,11 @@ logoutButtonClicked(e) {
 }
 ```
 
-9. These methods probably won't be *triggered* in the `App` component, though. Decide which component on your page will contain the login and logout buttons, and send these methods to the component(s) through `props` when you render them. Work with the code until you can see the correct console log messages when you click each button on the user interface.
+9. These methods probably won't be *triggered* in the `App` component, though. Decide which component on your page will contain the login and logout buttons, and make sure there are user interface elements so the user can trigger logging in and logging out. 
 
-10. Fill in the login and logout methods in `src/App.js`. 
+10. Send the `loginButtonClicked` and `logoutButtonClicked` methods to the component(s) that will trigger them through `props` (wherever those components are rendered). Work with the code until you can see the correct console log messages when you click each button on the user interface.
+
+11. Fill in the login and logout methods in `src/App.js`. 
 
 ```js
 loginButtonClicked(e) {
