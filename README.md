@@ -18,7 +18,7 @@ For prototypes and simple applications, development will often be faster if we r
 <!-- specific/measurable goal for students to achieve -->
 *After this workshop, developers will be able to:*
 
-- set up a project on firebase
+- set up a "project" on firebase
 - configure firebase authentication 
 
 
