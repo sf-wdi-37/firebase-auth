@@ -33,7 +33,7 @@ For prototypes and simple applications, development will often be faster if we r
 
 ### What Is Firebase?
 
-Firebase is a PaaS, or "Platform as a Service." That means it offers a number of cloud-based computing services, including the one that matters to us today: a realtime database. 
+Firebase is a PaaS, or "Platform as a Service." That means it offers a number of cloud-based computing services, including the one that matters to us today: a realtime database. Firebase is owned by Google.
 
 Not only can we access a Firebase database programmatically using code, but we can also interact with data via a graphical interface in the browser.
 
@@ -68,3 +68,32 @@ Not a one-stop solution.
 * Features like mailing, image processing, repeated jobs, or server-side integration with most APIS aren't part of Firebase yet.
 
 And remember, some simple web apps don't need a backend at all.  
+
+## Setting up Firebase
+
+Instructions modified from [https://firebase.google.com/docs/web/setup](https://firebase.google.com/docs/web/setup).
+
+1. Go to [https://console.firebase.google.com/](https://console.firebase.google.com/). 
+
+2. Click "Add Project," and follow the prompts to create a "project" for your app.
+
+3. Once you're on your project page, you'll see a list of feature cards on the bottom half of the page. Take a minute to read over the features available. 
+
+4. When you're ready to contineu, click "Add Firebase to your web app".   A popup will appear with some code that looks like this:
+
+```
+<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "1A2B3C4D5E6F7G8H9IAJBKCL",
+    authDomain: "ga-firebase-example.firebaseapp.com",
+    databaseURL: "https://ga-firebase-example.firebaseio.com",
+    projectId: "ga-firebase-example",
+    storageBucket: "ga-firebase-example.appspot.com",
+    messagingSenderId: "0123456789"
+  };
+  firebase.initializeApp(config);
+</script>
+```
+4. The instructions say to add this code directly to your HTML, so it's safe to share openly. If you have a simple HTML project, adding that code is a good idea.  
