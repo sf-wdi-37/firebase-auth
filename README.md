@@ -214,8 +214,8 @@ logoutButtonClicked(e) {
 }
 ```
 
+12. In the Firebase console for your project, click "Authentication" and then enable Google authentication (or authentication for whichever provider you prefer). 
 
+13. Let's take it one step farther! If you have a **MERN** app, you probably want to associate some data with each user. Log the value of a user from Firebase to your console to see the fields that are available to you.  Specifically, you should notice that each user has a specific unique id from Firebase.  
 
-12. Let's take it one step farther! If you have a **MERN** app, you probably want to associate some data with each user. Log the value of a user from Firebase to your console to see the fields that are available to you.  Specifically, you should notice that each user has a specific unique id from Firebase.  
-
-13. When your user needs to create a resource they own, simply add the user's unique id to the request and store it in the record for that resource.  When your user needs to access a resource, add the user's unique id to the request and use it to check whether the user owns that record.  Should users be able to read, edit, and/or delete records they don't own?
+14. When your user needs to create a resource they own, simply add the user's unique id to the request and store it in the record for that resource.  When your user needs to access a resource, add the user's unique id to the request and use it to check whether the user owns that record.  Should users be able to read, edit, and/or delete records they don't own?
