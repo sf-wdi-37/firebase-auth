@@ -106,6 +106,9 @@ The most commonly used feature of Firebase is probably its Realtime Database, bu
 
 This example assumes you're working on a React project created with `create-react-app`.  
 
+
+> Here's an example app that uses this strategy for auth:  [simple-auth-firebase-react-thing](https://github.com/SF-WDI-LABS/simple-auth-firebase-react-thing).
+
 Resources:  
 - [Add Firebase to your JavaScript Project](https://firebase.google.com/docs/web/setup)  
 - [Getting Started with Firebase Authentication on Websites](https://firebase.google.com/docs/auth/web/start)  
@@ -211,4 +214,7 @@ logoutButtonClicked(e) {
 ```
 
 
-Here's an example app that uses this strategy:  [simple-auth-firebase-react-thing](https://github.com/SF-WDI-LABS/simple-auth-firebase-react-thing)
+
+12. Let's take it one step farther! If you have a **MERN** app, you probably want to associate some data with each user. Log the value of a user from Firebase to your console to see the fields that are available to you.  Specifically, you should notice that each user has a specific unique id from Firebase.  
+
+13. When your user needs to create a resource they own, simply add the user's unique id to the request and store it in the record for that resource.  When your user needs to access a resource, add the user's unique id to the request and use it to check whether the user owns that record.  Should users be able to read, edit, and/or delete records they don't own?
