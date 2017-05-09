@@ -77,9 +77,7 @@ Instructions modified from [https://firebase.google.com/docs/web/setup](https://
 
 2. Click "Add Project," and follow the prompts to create a "project" for your app.
 
-3. Once you're on your project page, you'll see a list of feature cards on the bottom half of the page. Take a minute to read over the features available. 
-
-4. When you're ready to contineu, click "Add Firebase to your web app".   A popup will appear with some code that looks like this:
+3. Once you're on your project page, click "Add Firebase to your web app".   A popup will appear with some code that looks like this:
 
 ```
 <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
@@ -96,4 +94,118 @@ Instructions modified from [https://firebase.google.com/docs/web/setup](https://
   firebase.initializeApp(config);
 </script>
 ```
-4. The instructions say to add this code directly to your HTML, so it's safe to share openly. If you have a simple HTML project, adding that code is a good idea.  
+
+5. The instructions say to add this code directly to your HTML, so it's safe to share openly. If your project is simple, you can add this code directly to your HTML as the instructions suggest. However, if you're working on a larger app with JavaScript files, you may want to incorporate this configuration into a different part of your code. You will still need this configuration information, so it's important to know where to find it!
+
+6. Close the configuration information popup.  Back on the project's page, you'll see a list of feature cards on the bottom half of the page. Take a minute to read over the features available. 
+
+> The most commonly used feature of Firebase is probably its Realtime Database, but as an example we'll see how to use Firebase for authentication in a React app.
+
+### Example: Firebase for Google Auth with React
+
+This example assumes you're working on a React project created with `create-react-app`.  
+
+Resources:  
+- [Add Firebase to your JavaScript Project](https://firebase.google.com/docs/web/setup)  
+- [Getting Started with Firebase Authentication on Websites](https://firebase.google.com/docs/auth/web/start)  
+- [Main Firebase "Auth" documentation](https://firebase.google.com/docs/auth/)  
+- [List of Firebase "Auth" classes](https://firebase.google.com/docs/reference/js/firebase.auth)
+
+1. On the [Add Firebase to your JavaScript Project](https://firebase.google.com/docs/web/setup) page, under the first set of instructions, click 'NODE.JS' to see steps for configuring the project for Node.js-managed front end applications (like a `create-react-app` app).  Start with `npm install firebase --save`.
+
+2. Create a file or directory for your Firebase code within the `src` directory of your project. In the sample instructions below, this file is `src/utils/firebase.js`.
+
+3. Since `create-react-app` uses ES6, we'll use Firebase as a module with the `import` command. Inside your firebase.js file, add the following code to initialize your app:
+
+```js
+import firebase from 'firebase';
+
+// TODO: replace with your project's customized code snippet
+const config = {
+  apiKey: enter your API key,
+  authDomain: enter your auth domain,
+  databaseURL: enter your database url,
+  storageBucket: eter your storage bucket,
+  messagingSenderId: enter your message sender id
+};
+
+// initialize firebase app with config information
+firebase.initializeApp(config);
+```
+
+4. Also in firebase.js, export `firebase` and the `auth` object from within the newly initialized firebase app:
+
+```js
+const auth = firebase.auth();
+export { firebase, auth } 
+```
+
+5. The `src/App.js` file will control most of the login/logout logic.  Import `firebase` and `auth` in src/App.js:
+
+```js
+import { firebase, auth } from './utils/firebase';
+```
+
+6. In order for the main `App` component to track which user is logged in, add a `currentUser` field to the component's `state`.  When no one is logged in, the value will be `null`. When a user is logged in, the value will be their object. 
+
+7. To take advantage of Firebase auth, we'll need to attach an "event listener" for Firebase's `onAuthStateChanged` event.  Add this to the `componentWillMount` method. 
+
+
+```js
+ componentWillMount() {
+    auth.onAuthStateChanged(currentUser => {
+      if (currentUser) {
+        console.log('Logged in:', currentUser);
+        // set currentUser in App component state
+        this.setState({ currentUser });
+      } else {
+        this.setState({ currentUser: null });
+      }
+    });
+  }
+ ```
+ 
+8. The `App` component will also contain the functions that handle communicating with Firebase about when the user wants to log in or log out. Add the following method stubs:
+
+```js
+loginButtonClicked(e) {
+  e.preventDefault();
+  // tell Firebase auth to log in
+  console.log("signing in")
+}
+```
+
+```js
+logoutButtonClicked(e) {
+  e.preventDefault();
+  // tell Firebase auth to log out
+  console.log("signing out");
+}
+```
+
+9. These methods probably won't be *triggered* in the `App` component, though. Decide which component on your page will contain the login and logout buttons, and send these methods to the component(s) through `props` when you render them. Work with the code until you can see the correct console log messages when you click each button on the user interface.
+
+10. Fill in the login and logout methods in `src/App.js`. 
+
+```js
+loginButtonClicked(e) {
+  e.preventDefault();
+  // set up provider 
+  const provider = new firebase.auth.GoogleAuthProvider();
+  console.log("signing in")
+  // tell Firebase auth to log in with a popup and that provider
+  auth.signInWithPopup(provider);
+}
+```
+
+```js
+logoutButtonClicked(e) {
+  e.preventDefault();
+  // tell Firebase auth to log out
+  console.log("signing out");
+  auth.signOut();
+}
+```
+
+
+Here's an example app that uses this strategy:  [simple-auth-firebase-react-thing](https://github.com/SF-WDI-LABS/simple-auth-firebase-react-thing)
